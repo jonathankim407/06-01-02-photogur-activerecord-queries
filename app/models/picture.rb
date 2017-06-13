@@ -12,4 +12,10 @@ class Picture < ApplicationRecord
     Picture.where("created_at < ?", time)
   end
 
+  def self.pictures_created_in_year(year)
+    start_year = DateTime.new(year)
+    end_year   = DateTime.new(year).end_of_year
+    Picture.where("created_at BETWEEN ? AND ?", start_year, end_year)
+  end
+
 end
